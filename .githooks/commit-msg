@@ -1,0 +1,36 @@
+#!/bin/sh
+# Enforces Conventional Commits: type(scope): subject
+# No dependencies. Enabled by: git config core.hooksPath .githooks
+msg_file="$1"
+first_line=$(head -n 1 "$msg_file")
+
+# Let git-generated messages through
+case "$first_line" in
+  Merge\ *|Revert\ *|fixup!\ *|squash!\ *) exit 0 ;;
+esac
+
+types="feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert"
+pattern="^(${types})(\([a-z0-9][a-z0-9-]*\))?!?: [a-z0-9].{0,71}$"
+
+if ! printf '%s' "$first_line" | grep -Eq "$pattern"; then
+  cat >&2 <<MSG
+Commit message does not follow Conventional Commits.
+
+  Expected: <type>(<scope>): <subject>
+  Types:    ${types}
+  Scope:    optional, lowercase (e.g. post-01, series, templates, repo, hooks)
+  Subject:  starts lowercase, max 72 chars, no trailing period
+
+  Got:      ${first_line}
+
+Examples:
+  docs(post-01): draft the monorepo layout section
+  feat(templates): add post frontmatter template
+  chore(repo): update gitignore
+MSG
+  exit 1
+fi
+
+case "$first_line" in
+  *.) echo "Subject must not end with a period." >&2; exit 1 ;;
+esac
