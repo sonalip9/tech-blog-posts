@@ -4,7 +4,7 @@ subtitle: "Template repo included"
 slug: "typescript-monorepo-pnpm-turborepo-nestjs"
 series: "fullstack-monorepo"
 seriesPart: 1
-templateTag: "v0.1.0"
+templateTag: "v0.1.1"
 tags: ["typescript", "monorepo", "pnpm", "turborepo", "nestjs"]
 cover: ""
 status: planned
@@ -12,7 +12,7 @@ hashnodeUrl: ""
 publishedAt: ""
 ---
 
-Outline only. Write this post from the working template at tag `v0.1.0`.
+Outline only. Write this post from the working template at tag `v0.1.1`.
 
 Template repo: `fullstack-monorepo-template`. Every path below is relative to it.
 
@@ -35,7 +35,7 @@ Source: the template's README, "Requirements".
 7. Guardrails: git hooks and commit lint
 8. Decisions you can read in the repo
 9. Options and how to swap: monorepo tooling, API framework
-10. Try it: use the template
+10. Try it: use the template (clone at `v0.1.1`, then `pnpm rename-scope @yourscope`)
 11. What is next: two frontends sharing one UI package
 
 ## Decisions you can read in the repo
@@ -52,7 +52,7 @@ swappable-by-design idea of the whole series: show one example, then point to th
 | `docs/swapping/monorepo-tooling.md` | what to rewrite to leave pnpm or Turborepo |
 | `docs/swapping/api-framework.md` | what to rewrite to leave NestJS |
 
-Note for the text: v0.1.0 adopts no library that needs a seam (NestJS is a foundation and is
+Note for the text: this template version adopts no library that needs a seam (NestJS is a foundation and is
 not wrapped), so ADR-0004 is the rule, and the first seam arrives with the database post.
 
 ## Needs
@@ -81,7 +81,7 @@ Each one names the file or setting that fixes it.
   ships as an optional dependency, so the script is not needed).
 - **Pins and catalogs:** exact-pin packages that must match (all `@nestjs/*`), use `~` for
   `typescript`, share versions with `catalog:`. The policy table is in
-  `docs/adr/0001-monorepo-tooling.md` (added in v0.1.1).
+  `docs/adr/0001-monorepo-tooling.md`, section "Version pin policy".
 - **Decorator metadata in tests:** Nest dependency injection needs it, esbuild (Vitest's default)
   does not emit it. Fix: `unplugin-swc` in `apps/api/vitest.config.ts`.
 - **ESM and NodeNext:** Nest 12 is ESM, so relative imports end in `.js`
@@ -95,24 +95,23 @@ Each one names the file or setting that fixes it.
   `"passThroughEnv": ["PORT"]` on the `dev` task in `turbo.json`.
 - **Scoped builds:** use `--filter` so one app's deploy does not build everything
   (`pnpm turbo run build --filter=@template/api`).
-- **Release age exclusion:** at v0.1.0, `pnpm-workspace.yaml` has a `minimumReleaseAgeExclude`
-  block that pnpm added on install because `@nestjs/*@12.2.0` was only days old. v0.1.1 removes
-  it (commit `chore(workspace): remove the unneeded release age exclusion`): the versions had
-  aged and a fresh install without a lockfile passes. ADR-0001 does not mention it.
-  TODO: decide whether the post targets v0.1.1, and confirm pnpm's default minimum release age
-  from the pnpm docs before stating a number.
+- **Release age exclusion:** while `@nestjs/*@12.2.0` was only days old, pnpm added a
+  `minimumReleaseAgeExclude` block to `pnpm-workspace.yaml` on install. It is gone at v0.1.1
+  (commit `chore(workspace): remove the unneeded release age exclusion`): the versions had
+  aged and a fresh install without a lockfile passes. ADR-0001 does not mention it. Tell
+  readers the block can appear when they install a very new release, and what it does.
+  TODO: confirm pnpm's default minimum release age from the pnpm docs before stating a number.
 - **Pre-commit typecheck trade-off:** `.husky/pre-commit` runs lint-staged and then
   `pnpm typecheck` for the whole repo. Commits take a few seconds longer. Skip it for a
-  work-in-progress commit with `git commit --no-verify` (documented in the template README
-  from v0.1.1).
+  work-in-progress commit with `git commit --no-verify` (documented in the template README).
 
 ## Options and how to swap
 
 Keep both option tables from `SERIES.md`. Link each "How to swap" to the template at the tag:
 
 - Monorepo tooling (pnpm + Turborepo vs npm, yarn, bun, Nx):
-  `docs/swapping/monorepo-tooling.md` at tag `v0.1.0`
+  `docs/swapping/monorepo-tooling.md` at tag `v0.1.1`
 - API framework (NestJS vs Fastify, Hono, Express, Next.js route handlers):
-  `docs/swapping/api-framework.md` at tag `v0.1.0`
+  `docs/swapping/api-framework.md` at tag `v0.1.1`
 
-Link form: `https://github.com/sonalip9/fullstack-monorepo-template/blob/v0.1.0/docs/swapping/<file>.md`
+Link form: `https://github.com/sonalip9/fullstack-monorepo-template/blob/v0.1.1/docs/swapping/<file>.md`
