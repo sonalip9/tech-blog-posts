@@ -11,7 +11,7 @@ folder, and a short "how to swap" note in the template's `docs/swapping/`.
 
 | # | Post | Template tag | Status |
 |---|---|---|---|
-| 01 | Monorepo foundation + API: pnpm workspaces and catalogs, Turborepo, shared config and types packages, git hooks, NestJS API with `/health` | v0.1.0 | draft-ready |
+| 01 | Monorepo foundation + API: pnpm workspaces and catalogs, Turborepo, shared config and types packages, git hooks, NestJS API with `/health` | v0.1.1 | draft-ready |
 | 02 | Two frontends, one UI package: Expo and Next.js sharing a Tamagui-based UI package and the shared types | v0.2.0 | planned |
 | 03 | Database: Neon and Prisma behind a repository port, migrations, a dev branch | v0.3.0 | planned |
 | 04 | Secrets: Doppler layout, running locally with `doppler run` | v0.4.0 | planned |
