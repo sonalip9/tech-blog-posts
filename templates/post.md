@@ -7,7 +7,7 @@ seriesPart: 0
 templateTag: "v0.0.0"
 tags: []
 cover: ""
-status: draft # idea | planned | draft | review | published
+status: draft # idea | planned | draft-ready | draft | review | published
 hashnodeUrl: ""
 publishedAt: ""
 ---
