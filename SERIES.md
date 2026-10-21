@@ -11,7 +11,7 @@ folder, and a short "how to swap" note in the template's `docs/swapping/`.
 
 | # | Post | Template tag | Status |
 |---|---|---|---|
-| 01 | Monorepo foundation + API: pnpm workspaces and catalogs, Turborepo, shared config and types packages, git hooks, NestJS API with `/health` | v0.1.0 | planned |
+| 01 | Monorepo foundation + API: pnpm workspaces and catalogs, Turborepo, shared config and types packages, git hooks, NestJS API with `/health` | v0.1.0 | draft-ready |
 | 02 | Two frontends, one UI package: Expo and Next.js sharing a Tamagui-based UI package and the shared types | v0.2.0 | planned |
 | 03 | Database: Neon and Prisma behind a repository port, migrations, a dev branch | v0.3.0 | planned |
 | 04 | Secrets: Doppler layout, running locally with `doppler run` | v0.4.0 | planned |
@@ -20,7 +20,10 @@ folder, and a short "how to swap" note in the template's `docs/swapping/`.
 | 07 | CI/CD and releases: GitHub Actions, pre-deploy migrations, manual prod release with rollback | v0.7.0 | planned |
 | 08 | Optional: mobile builds and OTA, file storage on R2, auth | v0.8.0 | idea |
 
-Status values: `idea`, `planned`, `draft`, `review`, `published`.
+Status values: `idea`, `planned`, `draft-ready`, `draft`, `review`, `published`.
+`draft-ready` means the template tag exists and the post outline matches it, so writing can start.
+
+The template repo is built in Claude Code, and each tag is verified with `pnpm check` before its post is written.
 
 ## Options to cover per layer
 
